@@ -1,6 +1,6 @@
-package be.common.xrequest.model.author;
+package be.common.xrequest.domain.author;
 
-import be.common.xrequest.model.place.Place;
+import be.common.xrequest.domain.place.Place;
 
 public class Author {
     private String nickName;

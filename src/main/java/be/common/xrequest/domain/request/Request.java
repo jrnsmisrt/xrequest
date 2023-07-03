@@ -1,0 +1,124 @@
+package be.common.xrequest.domain.request;
+
+import be.common.xrequest.domain.author.Author;
+import be.common.xrequest.domain.requestcategory.RequestCategory;
+
+import java.sql.Blob;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Request {
+
+    private Author author;
+    private LocalDateTime dateTime;
+    private RequestCategory category;
+    private String title;
+    private String content;
+    private List<Blob> photos;
+
+    private List<String> tags;
+
+    public Request() {
+    }
+
+    public Request(RequestBuilder builder) {
+        this.category = builder.category;
+        this.author = builder.author;
+        this.dateTime = builder.dateTime;
+        this.title = builder.title;
+        this.content = builder.content;
+        this.photos = builder.photos;
+        this.tags = builder.tags;
+    }
+
+    public static class RequestBuilder {
+        private Author author;
+        private LocalDateTime dateTime;
+        private RequestCategory category;
+        private String title;
+        private String content;
+
+        //OPTIONAL
+        private List<Blob> photos;
+
+        private List<String> tags;
+
+        public RequestBuilder(Author author, LocalDateTime dateTime, RequestCategory category, String title, String content) {
+            this.category = category;
+            this.author = author;
+            this.dateTime = LocalDateTime.now();
+            this.title = title;
+            this.content = content;
+            this.photos = new ArrayList<>();
+            this.tags = new ArrayList<>();
+        }
+
+
+        public RequestBuilder withPhotos(List<Blob> photos) {
+            this.photos = photos;
+            return this;
+        }
+
+        public RequestBuilder withTags(List<String> tags) {
+            this.tags = tags;
+            return this;
+        }
+
+        public Request build() {
+            return new Request(this);
+        }
+    }
+
+    public Author getAuthor() {
+        return this.author;
+    }
+
+    public LocalDateTime getDateTime() {
+        return this.dateTime;
+    }
+
+    public RequestCategory getCategory() {
+        return this.category;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public String getContent() {
+        return this.content;
+    }
+
+    public List<Blob> getPhotos() {
+        return this.photos;
+    }
+
+    public List<String> getTags() {
+        return this.tags;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public void setCategory(RequestCategory category) {
+        this.category = category;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void addPhotos(List<Blob> photos) {
+        this.photos.addAll(photos);
+    }
+
+    public void addTags(List<String> tags) {
+        this.tags.addAll(tags);
+    }
+}

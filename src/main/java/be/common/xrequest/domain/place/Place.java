@@ -1,4 +1,4 @@
-package be.common.xrequest.model.place;
+package be.common.xrequest.domain.place;
 
 public class Place {
 

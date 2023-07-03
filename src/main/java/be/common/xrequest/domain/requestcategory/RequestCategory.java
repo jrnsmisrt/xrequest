@@ -1,4 +1,4 @@
-package be.common.xrequest.model.requestcategory;
+package be.common.xrequest.domain.requestcategory;
 
 public enum RequestCategory {
     FEMALE4MALE,
