@@ -7,9 +7,11 @@ import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Request {
 
+    private UUID id;
     private Author author;
     private LocalDateTime dateTime;
     private RequestCategory category;
@@ -33,6 +35,7 @@ public class Request {
     }
 
     public static class RequestBuilder {
+        private UUID id;
         private Author author;
         private LocalDateTime dateTime;
         private RequestCategory category;
@@ -55,6 +58,11 @@ public class Request {
         }
 
 
+        public RequestBuilder withId(UUID id) {
+            this.id = id;
+            return this;
+        }
+
         public RequestBuilder withPhotos(List<Blob> photos) {
             this.photos = photos;
             return this;
@@ -68,6 +76,10 @@ public class Request {
         public Request build() {
             return new Request(this);
         }
+    }
+
+    public UUID getId() {
+        return this.id;
     }
 
     public Author getAuthor() {
@@ -96,6 +108,10 @@ public class Request {
 
     public List<String> getTags() {
         return this.tags;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public void setAuthor(Author author) {

@@ -4,11 +4,14 @@ import be.common.xrequest.domain.request.Request;
 import be.common.xrequest.domain.request.dto.RequestDto;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 public class RequestMapper {
     public RequestDto mapRequestToRequestDto(Request request) {
 
         return new RequestDto()
+                .setId(request.getId().toString())
                 .setAuthor(request.getAuthor())
                 .setTitle(request.getTitle())
                 .setContent(request.getContent())
@@ -27,6 +30,7 @@ public class RequestMapper {
                 reqDto.getContent())
                 .withPhotos(reqDto.getPhotos())
                 .withTags(reqDto.getTags())
+                .withId(UUID.fromString(reqDto.getId()))
                 .build();
     }
 }

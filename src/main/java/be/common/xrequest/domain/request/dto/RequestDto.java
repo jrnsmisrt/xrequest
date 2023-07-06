@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class RequestDto {
+
+    private String id;
     private Author author;
     private LocalDateTime dateTime;
     private RequestCategory category;
@@ -44,6 +46,15 @@ public class RequestDto {
 
     public Author getAuthor() {
         return author;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public RequestDto setId(String id) {
+        this.id = id;
+        return this;
     }
 
     public RequestDto setTags(List<String> tags) {
