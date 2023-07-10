@@ -2,6 +2,9 @@ package be.common.xrequest.domain.request;
 
 import be.common.xrequest.domain.author.Author;
 import be.common.xrequest.domain.requestcategory.RequestCategory;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 
 import java.sql.Blob;
 import java.time.LocalDateTime;
@@ -9,17 +12,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Entity
 public class Request {
 
+    @Id
     private UUID id;
-    private Author author;
+
+    @Transient private Author author;
     private LocalDateTime dateTime;
     private RequestCategory category;
     private String title;
     private String content;
-    private List<Blob> photos;
+    @Transient private List<Blob> photos;
 
-    private List<String> tags;
+    @Transient private List<String> tags;
 
     public Request() {
     }

@@ -5,6 +5,7 @@ import be.common.xrequest.domain.request.dto.RequestDto;
 import be.common.xrequest.mapper.RequestMapper;
 import be.common.xrequest.repository.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,9 +19,12 @@ public class RequestService {
     RequestMapper mapper;
 
     @Autowired
-    public RequestService(RequestRepository requestRepository, RequestMapper mapper) {
-        this.requestRepository = requestRepository;
+    public RequestService(RequestRepository repository, RequestMapper mapper) {
+        this.requestRepository = repository;
         this.mapper = mapper;
+    }
+
+    public RequestService() {
     }
 
     public RequestDto createRequest(RequestDto requestDto) {
@@ -47,9 +51,8 @@ public class RequestService {
     }
 
     public RequestDto getRequestById(String id) {
-//        UUID mappedId = UUID.fromString(id);
-//        requestRepository.findAllById(Collections.singleton(mappedId)).stream().findFirst().get();
-        Optional<Request> optional = requestRepository.findAll().stream().filter(req -> req.getTitle().equals(id)).findFirst();
+        UUID mappedId = UUID.fromString(id);
+        Optional<Request> optional = requestRepository.findAll().stream().filter(req -> req.getId().equals(mappedId)).findFirst();
 
         if (optional.isEmpty()) {
             throw new NullPointerException();
