@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-public class Request {
+public class XRequest {
 
     @Id
     private UUID id;
@@ -27,10 +27,10 @@ public class Request {
 
     @Transient private List<String> tags;
 
-    public Request() {
+    public XRequest() {
     }
 
-    public Request(RequestBuilder builder) {
+    public XRequest(RequestBuilder builder) {
         this.category = builder.category;
         this.author = builder.author;
         this.dateTime = builder.dateTime;
@@ -79,8 +79,8 @@ public class Request {
             return this;
         }
 
-        public Request build() {
-            return new Request(this);
+        public XRequest build() {
+            return new XRequest(this);
         }
     }
 

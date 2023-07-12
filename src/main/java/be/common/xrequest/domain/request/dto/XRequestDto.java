@@ -7,7 +7,7 @@ import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class RequestDto {
+public class XRequestDto {
 
     private String id;
     private Author author;
@@ -52,43 +52,43 @@ public class RequestDto {
         return id;
     }
 
-    public RequestDto setId(String id) {
+    public XRequestDto setId(String id) {
         this.id = id;
         return this;
     }
 
-    public RequestDto setTags(List<String> tags) {
+    public XRequestDto setTags(List<String> tags) {
         this.tags = tags;
         return this;
     }
 
-    public RequestDto setPhotos(List<Blob> photos) {
+    public XRequestDto setPhotos(List<Blob> photos) {
         this.photos = photos;
         return this;
     }
 
-    public RequestDto setContent(String content) {
+    public XRequestDto setContent(String content) {
         this.content = content;
         return this;
     }
 
-    public RequestDto setTitle(String title) {
+    public XRequestDto setTitle(String title) {
         this.title = title;
         return this;
     }
 
-    public RequestDto setCategory(RequestCategory category) {
+    public XRequestDto setCategory(RequestCategory category) {
         this.category = category;
         return this;
     }
 
-    public RequestDto setDateTime(LocalDateTime dateTime) {
+    public XRequestDto setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
         return this;
 
     }
 
-    public RequestDto setAuthor(Author author) {
+    public XRequestDto setAuthor(Author author) {
         this.author = author;
         return this;
     }
