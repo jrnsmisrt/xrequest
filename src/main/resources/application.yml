@@ -10,5 +10,13 @@ spring:
     password: password
     driverClassName: org.h2.Driver
   jpa:
+    hibernate:
+      ddl-auto: update
     database-platform: org.hibernate.dialect.H2Dialect
     defer-datasource-initialization: true
+  h2:
+    console.enabled: true
+    console:
+      path: /h2-console
+      settings.trace: false
+      settings.web-allow-others: false

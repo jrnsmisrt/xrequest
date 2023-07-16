@@ -15,7 +15,7 @@ public class XRequestDto {
     private RequestCategory category;
     private String title;
     private String content;
-    private List<Blob> photos;
+    private List<String> photos;
 
     private List<String> tags;
 
@@ -24,7 +24,7 @@ public class XRequestDto {
         return tags;
     }
 
-    public List<Blob> getPhotos() {
+    public List<String> getPhotos() {
         return photos;
     }
 
@@ -62,7 +62,7 @@ public class XRequestDto {
         return this;
     }
 
-    public XRequestDto setPhotos(List<Blob> photos) {
+    public XRequestDto setPhotos(List<String> photos) {
         this.photos = photos;
         return this;
     }

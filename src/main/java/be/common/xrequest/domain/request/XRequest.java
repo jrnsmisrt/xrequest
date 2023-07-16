@@ -2,9 +2,9 @@ package be.common.xrequest.domain.request;
 
 import be.common.xrequest.domain.author.Author;
 import be.common.xrequest.domain.requestcategory.RequestCategory;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
+import org.hibernate.annotations.ManyToAny;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.sql.Blob;
 import java.time.LocalDateTime;
@@ -12,20 +12,36 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "xrequest")
+@Table(name = "XREQUEST")
 public class XRequest {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "ID")
     private UUID id;
 
-    @Transient private Author author;
-    private LocalDateTime dateTime;
-    private RequestCategory category;
-    private String title;
-    private String content;
-    @Transient private List<Blob> photos;
+    @OneToOne()
+    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    private Author author;
 
-    @Transient private List<String> tags;
+    @Column(name = "DATETIME")
+    private LocalDateTime dateTime;
+
+    @Column(name = "CATEGORY")
+    private RequestCategory category;
+    @Column(name = "TITLE")
+    private String title;
+    @Column(name = "CONTENT")
+    private String content;
+
+    @Column(name = "PHOTOS_URL")
+    @ElementCollection
+    private List<String> photos;
+
+    @Column(name = "TAGS")
+    @ElementCollection
+    private List<String> tags;
 
     public XRequest() {
     }
@@ -49,7 +65,7 @@ public class XRequest {
         private String content;
 
         //OPTIONAL
-        private List<Blob> photos;
+        private List<String> photos;
 
         private List<String> tags;
 
@@ -69,7 +85,7 @@ public class XRequest {
             return this;
         }
 
-        public RequestBuilder withPhotos(List<Blob> photos) {
+        public RequestBuilder withPhotos(List<String> photos) {
             this.photos = photos;
             return this;
         }
@@ -108,7 +124,7 @@ public class XRequest {
         return this.content;
     }
 
-    public List<Blob> getPhotos() {
+    public List<String> getPhotos() {
         return this.photos;
     }
 
@@ -136,7 +152,7 @@ public class XRequest {
         this.content = content;
     }
 
-    public void addPhotos(List<Blob> photos) {
+    public void addPhotos(List<String> photos) {
         this.photos.addAll(photos);
     }
 

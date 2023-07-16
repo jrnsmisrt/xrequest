@@ -14,12 +14,12 @@ import java.util.UUID;
 
 @Service
 public class XRequestService {
-    XRequestRepository XRequestRepository;
+    XRequestRepository repository;
     XRequestMapper mapper;
 
     @Autowired
     public XRequestService(XRequestRepository repository, XRequestMapper mapper) {
-        this.XRequestRepository = repository;
+        this.repository = repository;
         this.mapper = mapper;
     }
 
@@ -29,7 +29,7 @@ public class XRequestService {
     public XRequestDto createRequest(XRequestDto XRequestDto) {
         XRequest req = mapper.mapRequestDtoToRequest(XRequestDto);
 
-        XRequestRepository.saveAndFlush(req);
+        repository.saveAndFlush(req);
 
         return this.getRequestById(req.getId().toString());
     }
@@ -37,8 +37,13 @@ public class XRequestService {
 
     public List<XRequestDto> getAllRequests() {
         List<XRequestDto> dtoList = new ArrayList<>();
+        System.out.println("hello");
 
-        XRequestRepository.findAll().forEach(r -> {
+        repository.findAll().forEach(r -> {
+            System.out.println(r.getId());
+        });
+
+        repository.findAll().forEach(r -> {
             XRequestDto mapped = mapper.mapRequestToRequestDto(r);
             if (!dtoList.contains(mapped)) {
                 dtoList.add(mapped);
@@ -51,7 +56,7 @@ public class XRequestService {
 
     public XRequestDto getRequestById(String id) {
         UUID mappedId = UUID.fromString(id);
-        Optional<XRequest> optional = XRequestRepository.findAll().stream().filter(req -> req.getId().equals(mappedId)).findFirst();
+        Optional<XRequest> optional = repository.findAll().stream().filter(req -> req.getId().equals(mappedId)).findFirst();
 
         if (optional.isEmpty()) {
             throw new NullPointerException();
@@ -65,7 +70,7 @@ public class XRequestService {
                 (!this.getRequestById(id).getId().isEmpty()
                         || !this.getRequestById(id).getId().isBlank())) {
             XRequest mapped = mapper.mapRequestDtoToRequest(XRequestDto);
-            XRequestRepository.saveAndFlush(mapped);
+            repository.saveAndFlush(mapped);
 
             return this.getRequestById(mapped.getId().toString());
         } else throw new NullPointerException();

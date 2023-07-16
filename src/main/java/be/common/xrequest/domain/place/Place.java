@@ -1,15 +1,25 @@
 package be.common.xrequest.domain.place;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Place {
 
     String city;
     String state;
     String country;
 
+    @Id
+    String id;
+
     public Place(String city, String state, String country) {
         this.city = city;
         this.state = state;
         this.country = country;
+    }
+
+    public Place() {
     }
 
     public String getCity() {

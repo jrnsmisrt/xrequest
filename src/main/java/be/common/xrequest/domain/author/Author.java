@@ -1,14 +1,26 @@
 package be.common.xrequest.domain.author;
 
 import be.common.xrequest.domain.place.Place;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
+import java.util.UUID;
+
+@Entity
+@Table(name = "AUTHOR")
 public class Author {
+
+    @Id
+    UUID id;
     private String nickName;
     private String name;
     private String surName;
     private String email;
     private String phoneNumber;
     private Integer age;
+    @OneToOne
     private Place place;
 
     public Author(String nickName, String name,
@@ -22,6 +34,9 @@ public class Author {
         this.phoneNumber = phoneNumber;
         this.age = age;
         this.place = place;
+    }
+
+    public Author() {
     }
 
     public String getNickName() {
