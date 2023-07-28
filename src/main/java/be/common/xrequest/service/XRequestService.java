@@ -1,8 +1,15 @@
 package be.common.xrequest.service;
 
+import be.common.xrequest.domain.author.Author;
+import be.common.xrequest.domain.author.dto.AuthorDto;
+import be.common.xrequest.domain.place.dto.PlaceDto;
 import be.common.xrequest.domain.request.XRequest;
 import be.common.xrequest.domain.request.dto.XRequestDto;
+import be.common.xrequest.mapper.AuthorMapper;
+import be.common.xrequest.mapper.PlaceMapper;
 import be.common.xrequest.mapper.XRequestMapper;
+import be.common.xrequest.repository.AuthorRepository;
+import be.common.xrequest.repository.PlaceRepository;
 import be.common.xrequest.repository.XRequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,25 +18,39 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class XRequestService {
-    XRequestRepository repository;
-    XRequestMapper mapper;
+    XRequestRepository xRequestRepository;
+    AuthorRepository authorRepository;
+
+    PlaceRepository placeRepository;
+    XRequestMapper xRequestMapper;
+    AuthorMapper authorMapper;
+    PlaceMapper placeMapper;
 
     @Autowired
-    public XRequestService(XRequestRepository repository, XRequestMapper mapper) {
-        this.repository = repository;
-        this.mapper = mapper;
+    public XRequestService(XRequestRepository xRequestRepository,
+                           XRequestMapper xRequestMapper,
+                           AuthorRepository authorRepository,
+                           AuthorMapper authorMapper,
+                           PlaceRepository placeRepository,
+                           PlaceMapper placeMapper) {
+        this.xRequestRepository = xRequestRepository;
+        this.xRequestMapper = xRequestMapper;
+        this.authorRepository = authorRepository;
+        this.authorMapper = authorMapper;
+        this.placeRepository = placeRepository;
     }
 
     public XRequestService() {
     }
 
-    public XRequestDto createRequest(XRequestDto XRequestDto) {
-        XRequest req = mapper.mapRequestDtoToRequest(XRequestDto);
-
-        repository.saveAndFlush(req);
+    public XRequestDto createRequest(XRequestDto xRequestDto) {
+        XRequest req = xRequestMapper.mapRequestDtoToRequest(xRequestDto);
+        System.out.println(xRequestDto.getAuthor() + xRequestDto.getContent());
+        xRequestRepository.save(req);
 
         return this.getRequestById(req.getId().toString());
     }
@@ -37,17 +58,11 @@ public class XRequestService {
 
     public List<XRequestDto> getAllRequests() {
         List<XRequestDto> dtoList = new ArrayList<>();
-        System.out.println("hello");
 
-        repository.findAll().forEach(r -> {
-            System.out.println(r.getId());
-        });
-
-        repository.findAll().forEach(r -> {
-            XRequestDto mapped = mapper.mapRequestToRequestDto(r);
+        xRequestRepository.findAll().forEach(r -> {
+            XRequestDto mapped = xRequestMapper.mapRequestToRequestDto(r);
             if (!dtoList.contains(mapped)) {
                 dtoList.add(mapped);
-                System.out.println(mapped.getTitle() + " : has been added to dto list");
             }
         });
 
@@ -56,23 +71,41 @@ public class XRequestService {
 
     public XRequestDto getRequestById(String id) {
         UUID mappedId = UUID.fromString(id);
-        Optional<XRequest> optional = repository.findAll().stream().filter(req -> req.getId().equals(mappedId)).findFirst();
+        Optional<XRequest> optional = xRequestRepository.findAll().stream().filter(req -> req.getId().equals(mappedId)).findFirst();
 
         if (optional.isEmpty()) {
             throw new NullPointerException();
         }
 
-        return mapper.mapRequestToRequestDto(optional.get());
+        return xRequestMapper.mapRequestToRequestDto(optional.get());
     }
 
     public XRequestDto updateRequestById(String id, XRequestDto XRequestDto) {
         if (this.getRequestById(id).getId() != null &&
                 (!this.getRequestById(id).getId().isEmpty()
                         || !this.getRequestById(id).getId().isBlank())) {
-            XRequest mapped = mapper.mapRequestDtoToRequest(XRequestDto);
-            repository.saveAndFlush(mapped);
+            XRequest mapped = xRequestMapper.mapRequestDtoToRequest(XRequestDto);
+            xRequestRepository.saveAndFlush(mapped);
 
             return this.getRequestById(mapped.getId().toString());
         } else throw new NullPointerException();
+    }
+
+    public AuthorDto createAuthor(AuthorDto authorDto) {
+        Author author = this.authorMapper.mapAuthorDtoToAuthor(authorDto);
+
+        this.authorRepository.save(author);
+        return this.getAuthor(author.getId().toString());
+    }
+
+    public AuthorDto getAuthor(String id) {
+        Optional<Author> optionalAuthor = this.authorRepository.findById(UUID.fromString(id));
+        AuthorDto author = optionalAuthor.map(value -> authorMapper.mapAuthorToAuthorDto(value)).orElse(null);
+
+        return author;
+    }
+
+    public List<PlaceDto> getPlaces() {
+        return this.placeRepository.findAll().stream().map(place -> placeMapper.mapPlaceToPlaceDto(place)).collect(Collectors.toList());
     }
 }

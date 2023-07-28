@@ -1,13 +1,15 @@
 create table author
 (
-    id          VARCHAR(36)  NOT NULL,
-    nickname    VARCHAR(36)  NOT NULL,
+    id          VARCHAR(36) NOT NULL,
+    name        VARCHAR(36),
     surname     VARCHAR(36),
-    email       VARCHAR(36)  NOT NULL,
+    nickname    VARCHAR(36) NOT NULL,
+    email       VARCHAR(36) NOT NULL,
     phonenumber VARCHAR(36),
-    age         VARCHAR(36)  NOT NULL,
-    place       VARCHAR(200) NOT NULL,
-    constraint author_pk primary key (id)
+    age         VARCHAR(36) NOT NULL,
+    place       INTEGER     NOT NULL,
+    constraint author_pk primary key (id),
+    constraint place_id_fk foreign key (place) references place (id)
 );
 
 create table xrequest
@@ -23,3 +25,12 @@ create table xrequest
     constraint xrequest_pk primary key (id),
     CONSTRAINT author_id_fk FOREIGN KEY (author_id) REFERENCES author (id)
 );
+
+create table place
+(
+    id      integer      not null,
+    city    varchar(200) not null,
+    state   varchar(200),
+    country varchar(200) not null,
+    constraint place_pk primary key (id)
+)

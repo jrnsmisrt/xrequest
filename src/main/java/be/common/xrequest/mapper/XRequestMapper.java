@@ -4,6 +4,8 @@ import be.common.xrequest.domain.request.XRequest;
 import be.common.xrequest.domain.request.dto.XRequestDto;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 @Component
@@ -16,15 +18,17 @@ public class XRequestMapper {
                 .setTitle(XRequest.getTitle())
                 .setContent(XRequest.getContent())
                 .setCategory(XRequest.getCategory())
-                .setDateTime(XRequest.getDateTime())
+                .setDateTime(XRequest.getDateTime().toString())
                 .setTags(XRequest.getTags())
                 .setPhotos(XRequest.getPhotos());
     }
 
     public XRequest mapRequestDtoToRequest(XRequestDto reqDto) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
         return new XRequest.RequestBuilder(
                 reqDto.getAuthor(),
-                reqDto.getDateTime(),
+                LocalDateTime.parse(reqDto.getDateTime(), dateTimeFormatter),
                 reqDto.getCategory(),
                 reqDto.getTitle(),
                 reqDto.getContent())

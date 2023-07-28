@@ -1,10 +1,6 @@
 package be.common.xrequest.domain.author;
 
-import be.common.xrequest.domain.place.Place;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.UUID;
 
@@ -13,20 +9,28 @@ import java.util.UUID;
 public class Author {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     UUID id;
+    @Column(name = "nickname")
     private String nickName;
+    @Column(name = "name")
     private String name;
+    @Column(name = "surname")
     private String surName;
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "phonenumber")
     private String phoneNumber;
+    @Column(name = "age")
     private Integer age;
-    @OneToOne
-    private Place place;
+    @Column(name="place")
+    private Integer place;
 
     public Author(String nickName, String name,
                   String surName, String email,
                   String phoneNumber,
-                  Integer age, Place place) {
+                  Integer age, Integer place) {
         this.nickName = nickName;
         this.name = name;
         this.surName = surName;
@@ -37,6 +41,10 @@ public class Author {
     }
 
     public Author() {
+    }
+
+    public UUID getId() {
+        return id;
     }
 
     public String getNickName() {
@@ -63,7 +71,7 @@ public class Author {
         return age;
     }
 
-    public Place getPlace() {
+    public Integer getPlace() {
         return place;
     }
 
@@ -97,7 +105,7 @@ public class Author {
     }
 
 
-    public void setPlace(Place place) {
+    public void setPlace(Integer place) {
         this.place = place;
     }
 }

@@ -1,12 +1,8 @@
 package be.common.xrequest.domain.request;
 
-import be.common.xrequest.domain.author.Author;
 import be.common.xrequest.domain.requestcategory.RequestCategory;
 import jakarta.persistence.*;
-import org.hibernate.annotations.ManyToAny;
-import org.hibernate.annotations.UuidGenerator;
 
-import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +17,9 @@ public class XRequest {
     @Column(name = "ID")
     private UUID id;
 
-    @OneToOne()
-    @JoinColumn(name = "author_id", referencedColumnName = "id")
-    private Author author;
+    @Column(name = "author_id")
+//    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    private UUID author;
 
     @Column(name = "DATETIME")
     private LocalDateTime dateTime;
@@ -58,7 +54,7 @@ public class XRequest {
 
     public static class RequestBuilder {
         private UUID id;
-        private Author author;
+        private UUID author;
         private LocalDateTime dateTime;
         private RequestCategory category;
         private String title;
@@ -69,7 +65,7 @@ public class XRequest {
 
         private List<String> tags;
 
-        public RequestBuilder(Author author, LocalDateTime dateTime, RequestCategory category, String title, String content) {
+        public RequestBuilder(UUID author, LocalDateTime dateTime, RequestCategory category, String title, String content) {
             this.category = category;
             this.author = author;
             this.dateTime = LocalDateTime.now();
@@ -104,7 +100,7 @@ public class XRequest {
         return this.id;
     }
 
-    public Author getAuthor() {
+    public UUID getAuthor() {
         return this.author;
     }
 
@@ -136,7 +132,7 @@ public class XRequest {
         this.id = id;
     }
 
-    public void setAuthor(Author author) {
+    public void setAuthor(UUID author) {
         this.author = author;
     }
 

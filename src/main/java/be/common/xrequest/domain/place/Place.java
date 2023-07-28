@@ -1,16 +1,19 @@
 package be.common.xrequest.domain.place;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Place {
 
+    @Column(name = "city")
     String city;
+    @Column(name = "state")
     String state;
+    @Column(name = "country")
     String country;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     String id;
 
     public Place(String city, String state, String country) {

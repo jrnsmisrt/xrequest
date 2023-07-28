@@ -1,17 +1,15 @@
 package be.common.xrequest.domain.request.dto;
 
-import be.common.xrequest.domain.author.Author;
 import be.common.xrequest.domain.requestcategory.RequestCategory;
 
-import java.sql.Blob;
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 public class XRequestDto {
 
     private String id;
-    private Author author;
-    private LocalDateTime dateTime;
+    private String authorId;
+    private String dateTime;
     private RequestCategory category;
     private String title;
     private String content;
@@ -40,12 +38,12 @@ public class XRequestDto {
         return category;
     }
 
-    public LocalDateTime getDateTime() {
+    public String getDateTime() {
         return dateTime;
     }
 
-    public Author getAuthor() {
-        return author;
+    public UUID getAuthor() {
+        return UUID.fromString(authorId);
     }
 
     public String getId() {
@@ -82,14 +80,14 @@ public class XRequestDto {
         return this;
     }
 
-    public XRequestDto setDateTime(LocalDateTime dateTime) {
+    public XRequestDto setDateTime(String dateTime) {
         this.dateTime = dateTime;
         return this;
 
     }
 
-    public XRequestDto setAuthor(Author author) {
-        this.author = author;
+    public XRequestDto setAuthor(UUID author) {
+        this.authorId = author.toString();
         return this;
     }
 }
