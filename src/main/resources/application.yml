@@ -12,8 +12,11 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
     defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
   h2:
     console.enabled: true
     console:

@@ -31,12 +31,14 @@ public class XRequest {
     @Column(name = "CONTENT")
     private String content;
 
-    @Column(name = "PHOTOS_URL")
     @ElementCollection
+    @CollectionTable(name = "xrequest")
+    @Column(name = "photos_url")
     private List<String> photos;
 
-    @Column(name = "TAGS")
     @ElementCollection
+    @CollectionTable(name = "xrequest")
+    @Column(name = "TAGS")
     private List<String> tags;
 
     public XRequest() {
