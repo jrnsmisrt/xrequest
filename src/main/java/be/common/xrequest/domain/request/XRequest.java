@@ -1,6 +1,7 @@
 package be.common.xrequest.domain.request;
 
 import be.common.xrequest.domain.requestcategory.RequestCategory;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -14,21 +15,23 @@ public class XRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "ID")
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    @Column(name = "id")
     private UUID id;
 
     @Column(name = "author_id")
 //    @JoinColumn(name = "author_id", referencedColumnName = "id")
     private UUID author;
 
-    @Column(name = "DATETIME")
-    private LocalDateTime dateTime;
+    @Column(name = "datetime_request")
+    private String dateTime;
 
-    @Column(name = "CATEGORY")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "category_request")
     private RequestCategory category;
-    @Column(name = "TITLE")
+    @Column(name = "title")
     private String title;
-    @Column(name = "CONTENT")
+    @Column(name = "content_request")
     private String content;
 
     @ElementCollection
@@ -57,7 +60,7 @@ public class XRequest {
     public static class RequestBuilder {
         private UUID id;
         private UUID author;
-        private LocalDateTime dateTime;
+        private String dateTime;
         private RequestCategory category;
         private String title;
         private String content;
@@ -67,10 +70,10 @@ public class XRequest {
 
         private List<String> tags;
 
-        public RequestBuilder(UUID author, LocalDateTime dateTime, RequestCategory category, String title, String content) {
+        public RequestBuilder(UUID author, String dateTime, RequestCategory category, String title, String content) {
             this.category = category;
             this.author = author;
-            this.dateTime = LocalDateTime.now();
+            this.dateTime = dateTime;
             this.title = title;
             this.content = content;
             this.photos = new ArrayList<>();
@@ -106,7 +109,7 @@ public class XRequest {
         return this.author;
     }
 
-    public LocalDateTime getDateTime() {
+    public String getDateTime() {
         return this.dateTime;
     }
 

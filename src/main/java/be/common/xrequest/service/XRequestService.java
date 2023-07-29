@@ -60,6 +60,7 @@ public class XRequestService {
         List<XRequestDto> dtoList = new ArrayList<>();
 
         xRequestRepository.findAll().forEach(r -> {
+            System.out.println(r.getDateTime());
             XRequestDto mapped = xRequestMapper.mapRequestToRequestDto(r);
             if (!dtoList.contains(mapped)) {
                 dtoList.add(mapped);

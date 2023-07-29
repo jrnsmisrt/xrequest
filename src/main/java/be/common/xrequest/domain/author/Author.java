@@ -13,7 +13,7 @@ public class Author {
     UUID id;
     @Column(name = "nickname")
     private String nickName;
-    @Column(name = "name")
+    @Column(name = "family_name")
     private String name;
     @Column(name = "surname")
     private String surName;

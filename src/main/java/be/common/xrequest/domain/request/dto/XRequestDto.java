@@ -10,7 +10,7 @@ public class XRequestDto {
     private String id;
     private String authorId;
     private String dateTime;
-    private RequestCategory category;
+    private String category;
     private String title;
     private String content;
     private List<String> photos;
@@ -34,7 +34,7 @@ public class XRequestDto {
         return title;
     }
 
-    public RequestCategory getCategory() {
+    public String getCategory() {
         return category;
     }
 
@@ -76,7 +76,7 @@ public class XRequestDto {
     }
 
     public XRequestDto setCategory(RequestCategory category) {
-        this.category = category;
+        this.category = category.toString();
         return this;
     }
 
