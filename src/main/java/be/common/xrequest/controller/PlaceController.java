@@ -24,4 +24,5 @@ public class PlaceController {
     public List<PlaceDto> getAllRequests() {
         return XRequestService.getPlaces();
     }
+
 }

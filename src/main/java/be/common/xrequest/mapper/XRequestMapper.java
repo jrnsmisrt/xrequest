@@ -8,15 +8,16 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Component
 public class XRequestMapper {
     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
+
     public XRequestDto mapRequestToRequestDto(XRequest xRequest) {
-        System.out.println("!!! HELLLO");
         return new XRequestDto()
-                .setId(xRequest.getId().toString())
+                .setId(xRequest.getId())
                 .setAuthor(xRequest.getAuthor())
                 .setTitle(xRequest.getTitle())
                 .setContent(xRequest.getContent())
@@ -27,10 +28,6 @@ public class XRequestMapper {
     }
 
     public XRequest mapRequestDtoToRequest(XRequestDto reqDto) {
-        System.out.println(LocalDateTime.parse(reqDto.getDateTime(), dateTimeFormatter));
-
-        LocalDateTime l = LocalDateTime.parse(reqDto.getDateTime(), dateTimeFormatter);
-
         return new XRequest.RequestBuilder(
                 reqDto.getAuthor(),
                 reqDto.getDateTime(),

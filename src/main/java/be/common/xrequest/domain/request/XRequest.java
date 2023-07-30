@@ -1,26 +1,24 @@
 package be.common.xrequest.domain.request;
 
 import be.common.xrequest.domain.requestcategory.RequestCategory;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import be.common.xrequest.helper.StringListConverter;
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Entity(name = "xrequest")
+@Entity
 @Table(name = "XREQUEST")
 public class XRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @JsonFormat(shape = JsonFormat.Shape.STRING)
     @Column(name = "id")
     private UUID id;
 
     @Column(name = "author_id")
-//    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    @JoinColumn(name = "author_id", referencedColumnName = "id")
     private UUID author;
 
     @Column(name = "datetime_request")
@@ -34,15 +32,13 @@ public class XRequest {
     @Column(name = "content_request")
     private String content;
 
-    @ElementCollection
-    @CollectionTable(name = "xrequest")
+    @Convert(converter = StringListConverter.class)
     @Column(name = "photos_url")
-    private List<String> photos;
+    private List<String> photos = new ArrayList<>();
 
-    @ElementCollection
-    @CollectionTable(name = "xrequest")
+    @Convert(converter = StringListConverter.class)
     @Column(name = "TAGS")
-    private List<String> tags;
+    private List<String> tags = new ArrayList<>();
 
     public XRequest() {
     }

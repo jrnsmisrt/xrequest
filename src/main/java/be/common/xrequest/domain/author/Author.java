@@ -24,7 +24,8 @@ public class Author {
     private String phoneNumber;
     @Column(name = "age")
     private Integer age;
-    @Column(name="place")
+    @Column(name = "place")
+    @JoinColumn(name = "place", referencedColumnName = "id")
     private Integer place;
 
     public Author(String nickName, String name,

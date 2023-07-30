@@ -6,27 +6,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:8081")
 @RequestMapping(path = "/xrequests/authors")
 public class AuthorController {
 
-    XRequestService XRequestService;
+    XRequestService xRequestService;
 
     @Autowired
-    public AuthorController(XRequestService XRequestService) {
-        this.XRequestService = XRequestService;
+    public AuthorController(XRequestService xRequestService) {
+        this.xRequestService = xRequestService;
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<AuthorDto> getAuthors(){
+        return xRequestService.getAuthors();
     }
 
     @GetMapping(path = "/{id}", produces = "application/json")
     @ResponseBody
     public AuthorDto getAuthorById(@PathVariable String id) {
-        return XRequestService.getAuthor(id);
+        return xRequestService.getAuthor(id);
     }
 
     @PostMapping(produces = "application/json", consumes = "application/json", path = "/new")
     @ResponseStatus(HttpStatus.CREATED)
     public AuthorDto createRequest(@RequestBody AuthorDto authorDto) {
-        return XRequestService.createAuthor(authorDto);
+        return xRequestService.createAuthor(authorDto);
     }
 }

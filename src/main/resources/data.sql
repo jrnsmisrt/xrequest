@@ -1,5 +1,3 @@
-set schema public;
-
 drop table if exists author cascade;
 drop table if exists xrequest cascade;
 drop table if exists place cascade;
@@ -34,7 +32,7 @@ create table xrequest
 (
     id               VARCHAR(36)  NOT NULL,
     author_id        VARCHAR(36)  NOT NULL,
-    datetime_request         VARCHAR(36)  NOT NULL,
+    datetime_request VARCHAR(36)  NOT NULL,
     category_request VARCHAR(36)  NOT NULL,
     title            VARCHAR(50)  NOT NULL,
     content_request  VARCHAR(500) NOT NULL,
@@ -61,5 +59,5 @@ values ('a90efda9-e231-400b-a24f-0365712b2df0',
         'COUPLE4COUPLE',
         'test_title',
         'test_content',
-        array ['test/url', 'test/url2'],
-        array ['sex, date', 'love', 'fuck']);
+        '"test/url", "test/url2"',
+        '"sex, date", "love", "fuck"');

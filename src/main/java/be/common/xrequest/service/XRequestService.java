@@ -42,6 +42,7 @@ public class XRequestService {
         this.authorRepository = authorRepository;
         this.authorMapper = authorMapper;
         this.placeRepository = placeRepository;
+        this.placeMapper = placeMapper;
     }
 
     public XRequestService() {
@@ -57,17 +58,8 @@ public class XRequestService {
 
 
     public List<XRequestDto> getAllRequests() {
-        List<XRequestDto> dtoList = new ArrayList<>();
-
-        xRequestRepository.findAll().forEach(r -> {
-            System.out.println(r.getDateTime());
-            XRequestDto mapped = xRequestMapper.mapRequestToRequestDto(r);
-            if (!dtoList.contains(mapped)) {
-                dtoList.add(mapped);
-            }
-        });
-
-        return dtoList;
+        return xRequestRepository.findAll().stream()
+                .map(request -> xRequestMapper.mapRequestToRequestDto(request)).collect(Collectors.toList());
     }
 
     public XRequestDto getRequestById(String id) {
@@ -108,5 +100,9 @@ public class XRequestService {
 
     public List<PlaceDto> getPlaces() {
         return this.placeRepository.findAll().stream().map(place -> placeMapper.mapPlaceToPlaceDto(place)).collect(Collectors.toList());
+    }
+
+    public List<AuthorDto> getAuthors() {
+        return this.authorRepository.findAll().stream().map(author -> authorMapper.mapAuthorToAuthorDto(author)).collect(Collectors.toList());
     }
 }

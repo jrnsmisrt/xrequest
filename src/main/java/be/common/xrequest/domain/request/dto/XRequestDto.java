@@ -50,8 +50,8 @@ public class XRequestDto {
         return id;
     }
 
-    public XRequestDto setId(String id) {
-        this.id = id;
+    public XRequestDto setId(UUID id) {
+        this.id = id.toString();
         return this;
     }
 
