@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Component
 public class XRequestMapper {
@@ -22,21 +21,23 @@ public class XRequestMapper {
                 .setTitle(xRequest.getTitle())
                 .setContent(xRequest.getContent())
                 .setCategory(xRequest.getCategory())
-                .setDateTime(xRequest.getDateTime())
+                .setDateTime(xRequest.getDateTime().toString())
                 .setTags(xRequest.getTags())
                 .setPhotos(xRequest.getPhotos());
     }
 
     public XRequest mapRequestDtoToRequest(XRequestDto reqDto) {
+        LocalDateTime dateTime = LocalDateTime.parse(reqDto.getDateTime(), dateTimeFormatter);
+        System.out.println("tesettttt : " + reqDto.getAuthor());
         return new XRequest.RequestBuilder(
-                reqDto.getAuthor(),
-                reqDto.getDateTime(),
+                UUID.fromString(reqDto.getAuthor()),
+                dateTime,
                 RequestCategory.valueOf(reqDto.getCategory()),
                 reqDto.getTitle(),
                 reqDto.getContent())
+                .withId(UUID.randomUUID())
                 .withPhotos(reqDto.getPhotos())
                 .withTags(reqDto.getTags())
-                .withId(UUID.fromString(reqDto.getId()))
                 .build();
     }
 }

@@ -42,8 +42,8 @@ public class XRequestDto {
         return dateTime;
     }
 
-    public UUID getAuthor() {
-        return UUID.fromString(authorId);
+    public String getAuthor() {
+        return authorId;
     }
 
     public String getId() {

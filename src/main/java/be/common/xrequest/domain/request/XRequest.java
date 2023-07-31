@@ -1,9 +1,12 @@
 package be.common.xrequest.domain.request;
 
 import be.common.xrequest.domain.requestcategory.RequestCategory;
+import be.common.xrequest.helper.CustomLocalDateTimeConverter;
 import be.common.xrequest.helper.StringListConverter;
 import jakarta.persistence.*;
+import org.springframework.data.convert.Jsr310Converters;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -21,8 +24,9 @@ public class XRequest {
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     private UUID author;
 
+    @Convert(converter = CustomLocalDateTimeConverter.class)
     @Column(name = "datetime_request")
-    private String dateTime;
+    private LocalDateTime dateTime;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "category_request")
@@ -56,7 +60,7 @@ public class XRequest {
     public static class RequestBuilder {
         private UUID id;
         private UUID author;
-        private String dateTime;
+        private LocalDateTime dateTime;
         private RequestCategory category;
         private String title;
         private String content;
@@ -66,7 +70,7 @@ public class XRequest {
 
         private List<String> tags;
 
-        public RequestBuilder(UUID author, String dateTime, RequestCategory category, String title, String content) {
+        public RequestBuilder(UUID author, LocalDateTime dateTime, RequestCategory category, String title, String content) {
             this.category = category;
             this.author = author;
             this.dateTime = dateTime;
@@ -105,7 +109,7 @@ public class XRequest {
         return this.author;
     }
 
-    public String getDateTime() {
+    public LocalDateTime getDateTime() {
         return this.dateTime;
     }
 
