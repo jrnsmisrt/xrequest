@@ -1,14 +1,14 @@
 package be.common.xrequest.domain.author.dto;
 
 public class AuthorDto {
-    String id;
+    private String id;
     private String nickName;
     private String name;
     private String surName;
     private String email;
     private String phoneNumber;
     private Integer age;
-    private Integer place;
+    private String place;
 
     public String getId() {
         return id;
@@ -73,11 +73,11 @@ public class AuthorDto {
         return this;
     }
 
-    public Integer getPlace() {
+    public String getPlace() {
         return place;
     }
 
-    public AuthorDto setPlace(Integer place) {
+    public AuthorDto setPlace(String place) {
         this.place = place;
         return this;
     }

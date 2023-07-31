@@ -10,6 +10,7 @@ public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id")
     UUID id;
     @Column(name = "nickname")
     private String nickName;
@@ -26,12 +27,12 @@ public class Author {
     private Integer age;
     @Column(name = "place")
     @JoinColumn(name = "place", referencedColumnName = "id")
-    private Integer place;
+    private String place;
 
     public Author(String nickName, String name,
                   String surName, String email,
                   String phoneNumber,
-                  Integer age, Integer place) {
+                  Integer age, String place) {
         this.nickName = nickName;
         this.name = name;
         this.surName = surName;
@@ -72,7 +73,7 @@ public class Author {
         return age;
     }
 
-    public Integer getPlace() {
+    public String getPlace() {
         return place;
     }
 
@@ -106,7 +107,7 @@ public class Author {
     }
 
 
-    public void setPlace(Integer place) {
+    public void setPlace(String place) {
         this.place = place;
     }
 }

@@ -14,9 +14,15 @@ public class Place {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id")
     String id;
 
-    public Place(String city, String state, String country) {
+    @Column(name = "postal")
+    String postal;
+
+    public Place(String id, String postal, String city, String state, String country) {
+        this.id = id;
+        this.postal = postal;
         this.city = city;
         this.state = state;
         this.country = country;
@@ -47,5 +53,22 @@ public class Place {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPostal() {
+        return postal;
+    }
+
+    public void setPostal(String postal) {
+        this.postal = postal;
     }
 }

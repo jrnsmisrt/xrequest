@@ -4,26 +4,27 @@ drop table if exists place cascade;
 
 create table place
 (
-    id      integer      not null,
+    id      SERIAL,
+    postal  VARCHAR(200)      not null,
     city    varchar(200) not null,
     state   varchar(200),
     country varchar(200) not null,
     constraint place_pk primary key (id)
 );
 
-insert into place(id, city, state, country)
-values (1, 'Oostende', 'West-Vlaanderen', 'België');
+/*insert into place(id, city, state, country)
+values (1, 'Oostende', 'West-Vlaanderen', 'België');*/
 
 create table author
 (
-    id          VARCHAR(36) NOT NULL,
+    id          VARCHAR(200),
     family_name VARCHAR(36),
     surname     VARCHAR(36),
-    nickname    VARCHAR(36) NOT NULL,
-    email       VARCHAR(36) NOT NULL,
+    nickname    VARCHAR(36)  NOT NULL,
+    email       VARCHAR(36)  NOT NULL,
     phonenumber VARCHAR(36),
-    age         VARCHAR(36) NOT NULL,
-    place       INTEGER     NOT NULL,
+    age         VARCHAR(36)  NOT NULL,
+    place       VARCHAR(200) NOT NULL,
     constraint author_pk primary key (id),
     constraint place_id_fk foreign key (place) references place (id)
 );
@@ -42,6 +43,10 @@ create table xrequest
     CONSTRAINT author_id_fk FOREIGN KEY (author_id) REFERENCES author (id)
 );
 
+insert into place(postal, city, state, country)
+select postal, city, state, country
+FROM CSVREAD('C:/_development/personal/xrequest/data/place.csv');
+
 insert into author(ID, FAMILY_NAME, NICKNAME, SURNAME, EMAIL, PHONENUMBER, AGE, PLACE)
 values ('64686c7c-de43-4667-8a13-eb192c0bd080',
         'test user name',
@@ -50,7 +55,7 @@ values ('64686c7c-de43-4667-8a13-eb192c0bd080',
         'tester@xrequest.be',
         '001 001 001',
         30,
-        1);
+        (select id from place where city = 'Bredene'));
 
 insert into xrequest(id, AUTHOR_ID, DATETIME_REQUEST, category_request, TITLE, content_request, PHOTOS_URL, TAGS)
 values ('a90efda9-e231-400b-a24f-0365712b2df0',

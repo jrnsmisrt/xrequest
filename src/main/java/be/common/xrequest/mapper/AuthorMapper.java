@@ -14,6 +14,7 @@ public class AuthorMapper {
                 .setName(author.getName())
                 .setSurName(author.getSurName())
                 .setNickName(author.getNickName())
+                .setAge(author.getAge())
                 .setEmail(author.getEmail())
                 .setPhoneNumber(author.getPhoneNumber())
                 .setPlace(author.getPlace());
