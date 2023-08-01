@@ -48,6 +48,7 @@ public class XRequest {
     }
 
     public XRequest(RequestBuilder builder) {
+        this.id = builder.id;
         this.category = builder.category;
         this.author = builder.author;
         this.dateTime = builder.dateTime;
