@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,6 +18,14 @@ class XRequestTest {
 
     @BeforeEach
     void setUp() {
+        List<String> photos = new ArrayList<>();
+        photos.add("/photos");
+        photos.add("/images");
+
+        List<String> tags = new ArrayList<>();
+        tags.add("tag1");
+        tags.add("tag2");
+
         this.mockRequest = new XRequest.RequestBuilder(
                 this.authorId,
                 LocalDateTime.now(),
@@ -24,8 +33,8 @@ class XRequestTest {
                 "mockTitle",
                 "mockContent")
                 .withId(this.requestId)
-                .withPhotos(List.of("/photos", "/images"))
-                .withTags(List.of("Mock", "Test"))
+                .withPhotos(photos)
+                .withTags(tags)
                 .build();
     }
 
@@ -72,7 +81,7 @@ class XRequestTest {
 
     @Test
     void getTags() {
-        Assertions.assertEquals(this.mockRequest.getTags(), List.of("Mock", "Test"));
+        Assertions.assertEquals(this.mockRequest.getTags(), List.of("tag1", "tag2"));
     }
 
     @Test
@@ -93,21 +102,42 @@ class XRequestTest {
 
     @Test
     void setCategory() {
+        this.mockRequest.setCategory(RequestCategory.COUPLE4COUPLE);
+
+        Assertions.assertEquals(this.mockRequest.getCategory(), RequestCategory.COUPLE4COUPLE);
     }
 
     @Test
     void setTitle() {
+        this.mockRequest.setTitle("mockTitle2");
+
+        Assertions.assertEquals(this.mockRequest.getTitle(), "mockTitle2");
     }
 
     @Test
     void setContent() {
+        this.mockRequest.setContent("newContent");
+
+        Assertions.assertEquals(this.mockRequest.getContent(), "newContent");
     }
 
     @Test
     void addPhotos() {
+        List<String> add = new ArrayList<>();
+        add.add(("yolo"));
+
+        this.mockRequest.addPhotos(add);
+
+        Assertions.assertEquals(this.mockRequest.getPhotos(), List.of("/photos", "/images", "yolo"));
     }
 
     @Test
     void addTags() {
+        List<String> add = new ArrayList<>();
+        add.add(("tag3"));
+
+        this.mockRequest.addTags(add);
+
+        Assertions.assertEquals(this.mockRequest.getTags(), List.of("tag1", "tag2", "tag3"));
     }
 }
