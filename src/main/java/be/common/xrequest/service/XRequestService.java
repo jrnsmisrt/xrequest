@@ -50,7 +50,7 @@ public class XRequestService {
 
         xRequestRepository.save(req);
 
-        return this.getRequestById(req.getId().toString());
+        return xRequestMapper.mapRequestToRequestDto(req);
     }
 
 

@@ -77,10 +77,18 @@ class XRequestTest {
 
     @Test
     void setId() {
+        UUID random = UUID.randomUUID();
+        this.mockRequest.setId(random);
+
+        Assertions.assertEquals(this.mockRequest.getId(), random);
     }
 
     @Test
     void setAuthor() {
+        UUID random = UUID.randomUUID();
+        this.mockRequest.setAuthor(random);
+
+        Assertions.assertEquals(this.mockRequest.getAuthor(), random);
     }
 
     @Test

@@ -22,7 +22,6 @@ public class XRequestController {
     @GetMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public List<XRequestDto> getAllRequests() {
-        System.out.println("getallrequests called");
         return XRequestService.getAllRequests();
     }
 
