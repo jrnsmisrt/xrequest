@@ -39,8 +39,8 @@ public class PlaceDto {
         return id;
     }
 
-    public PlaceDto setId(String id) {
-        this.id = id;
+    public PlaceDto setId(Integer id) {
+        this.id = id.toString();
         return this;
     }
 

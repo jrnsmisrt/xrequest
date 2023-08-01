@@ -21,8 +21,26 @@ public class PlaceController {
 
     @GetMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public List<PlaceDto> getAllRequests() {
+    public List<PlaceDto> getAllPlaces() {
         return XRequestService.getPlaces();
     }
 
+
+    @GetMapping(path = "/{id}", produces = "application/json")
+    @ResponseBody
+    public PlaceDto getPlaceById(@PathVariable String id) {
+        return this.XRequestService.getPlace(Integer.valueOf(id));
+    }
+
+    @GetMapping(params = "postal", produces = "application/json")
+    @ResponseBody
+    public List<PlaceDto> getPlaceByPostal(@RequestParam String postal) {
+        return this.XRequestService.getPlaceByPostal(postal);
+    }
+
+    @GetMapping(params = "city", produces = "application/json")
+    @ResponseBody
+    public List<PlaceDto> getPlaceByCity(@RequestParam String city) {
+        return this.XRequestService.getPlaceByCity(city);
+    }
 }

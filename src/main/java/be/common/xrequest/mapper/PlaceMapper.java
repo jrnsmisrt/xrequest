@@ -11,14 +11,14 @@ public class PlaceMapper {
         return new PlaceDto()
                 .setCity(place.getCity())
                 .setState(place.getState())
-                .setCountry(place.getCity())
+                .setCountry(place.getCountry())
                 .setPostal(place.getPostal())
                 .setId(place.getId());
     }
 
     public Place mapPlaceDtoToPlace(PlaceDto placeDto) {
         return new Place(
-                placeDto.getId(),
+                Integer.valueOf(placeDto.getId()),
                 placeDto.getPostal(),
                 placeDto.getCity(),
                 placeDto.getState(),

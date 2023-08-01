@@ -19,13 +19,11 @@ public class StringListConverter implements AttributeConverter<List<String>, Str
 
     @Override
     public List<String> convertToEntityAttribute(String string) {
-        System.out.println("converter : " + string);
         if (string != null) {
             String newString = string.replace("[", "");
             newString = newString.replace("]", "");
             newString = newString.replace("\"", "");
 
-            System.out.println(newString);
             return Arrays.asList(newString.split(SPLIT_CHAR));
         } else {
             return emptyList();

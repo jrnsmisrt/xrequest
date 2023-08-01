@@ -15,12 +15,12 @@ public class Place {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
-    String id;
+    Integer id;
 
     @Column(name = "postal")
     String postal;
 
-    public Place(String id, String postal, String city, String state, String country) {
+    public Place(Integer id, String postal, String city, String state, String country) {
         this.id = id;
         this.postal = postal;
         this.city = city;
@@ -56,12 +56,12 @@ public class Place {
     }
 
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.id = Integer.valueOf(id);
     }
 
     public String getPostal() {
