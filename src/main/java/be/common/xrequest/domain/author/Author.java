@@ -77,6 +77,8 @@ public class Author {
         return place;
     }
 
+    public void setId(UUID id) {this.id = id;}
+
     public void setNickName(String nickName) {
         this.nickName = nickName;
     }
