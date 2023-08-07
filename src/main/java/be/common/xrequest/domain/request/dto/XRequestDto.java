@@ -8,7 +8,7 @@ import java.util.UUID;
 public class XRequestDto {
 
     private String id;
-    private String authorId;
+    private String author;
     private String dateTime;
     private String category;
     private String title;
@@ -43,7 +43,7 @@ public class XRequestDto {
     }
 
     public String getAuthor() {
-        return authorId;
+        return author;
     }
 
     public String getId() {
@@ -87,7 +87,7 @@ public class XRequestDto {
     }
 
     public XRequestDto setAuthor(UUID author) {
-        this.authorId = author.toString();
+        this.author = author.toString();
         return this;
     }
 }

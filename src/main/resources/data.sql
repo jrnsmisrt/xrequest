@@ -66,3 +66,33 @@ values ('a90efda9-e231-400b-a24f-0365712b2df0',
         'test_content',
         '"test/url", "test/url2"',
         '"sex, date", "love", "fuck"');
+
+insert into xrequest(id, AUTHOR_ID, DATETIME_REQUEST, category_request, TITLE, content_request, PHOTOS_URL, TAGS)
+values ('a90efda9-e231-400b-a24f-0365712b2df1',
+        '64686c7c-de43-4667-8a13-eb192c0bd080',
+        '29-07-2021 08:45:10',
+        'COUPLE4COUPLE',
+        'test_title',
+        'test_content',
+        '"test/url", "test/url2"',
+        '"sex, date", "love", "fuck"');
+
+insert into xrequest(id, AUTHOR_ID, DATETIME_REQUEST, category_request, TITLE, content_request, PHOTOS_URL, TAGS)
+values ('a90efda9-e231-400b-a24f-0365712b2df2',
+        '64686c7c-de43-4667-8a13-eb192c0bd080',
+        '29-07-2022 08:45:10',
+        'COUPLE4COUPLE',
+        'test_title',
+        'test_content',
+        '"test/url", "test/url2"',
+        '"sex, date", "love", "fuck"');
+
+insert into xrequest(id, AUTHOR_ID, DATETIME_REQUEST, category_request, TITLE, content_request, PHOTOS_URL, TAGS)
+values ('a90efda9-e231-400b-a24f-0365712b2df3',
+        '64686c7c-de43-4667-8a13-eb192c0bd080',
+        '29-07-2024 08:45:10',
+        'COUPLE4COUPLE',
+        'test_title',
+        'test_content',
+        '"test/url", "test/url2"',
+        '"sex, date", "love", "fuck"');
