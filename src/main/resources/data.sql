@@ -45,7 +45,8 @@ create table xrequest
 
 insert into place(postal, city, state, country)
 select postal, city, state, country
-FROM CSVREAD('C:/_development/personal/xrequest/data/place.csv');
+FROM CSVREAD('G:/_development/xrequest/data/place.csv');
+-- FROM CSVREAD('C:/_development/personal/xrequest/data/place.csv');
 
 insert into author(ID, FAMILY_NAME, NICKNAME, SURNAME, EMAIL, PHONENUMBER, AGE, PLACE)
 values ('64686c7c-de43-4667-8a13-eb192c0bd080',
@@ -71,7 +72,7 @@ insert into xrequest(id, AUTHOR_ID, DATETIME_REQUEST, category_request, TITLE, c
 values ('a90efda9-e231-400b-a24f-0365712b2df1',
         '64686c7c-de43-4667-8a13-eb192c0bd080',
         '29-07-2021 08:45:10',
-        'COUPLE4COUPLE',
+        'FEMALE4FEMALE',
         'test_title',
         'test_content',
         '"test/url", "test/url2"',
@@ -81,7 +82,7 @@ insert into xrequest(id, AUTHOR_ID, DATETIME_REQUEST, category_request, TITLE, c
 values ('a90efda9-e231-400b-a24f-0365712b2df2',
         '64686c7c-de43-4667-8a13-eb192c0bd080',
         '29-07-2022 08:45:10',
-        'COUPLE4COUPLE',
+        'MALE4COUPLE',
         'test_title',
         'test_content',
         '"test/url", "test/url2"',
@@ -91,7 +92,7 @@ insert into xrequest(id, AUTHOR_ID, DATETIME_REQUEST, category_request, TITLE, c
 values ('a90efda9-e231-400b-a24f-0365712b2df3',
         '64686c7c-de43-4667-8a13-eb192c0bd080',
         '29-07-2024 08:45:10',
-        'COUPLE4COUPLE',
+        'BDSMFETISHKINK',
         'test_title',
         'test_content',
         '"test/url", "test/url2"',
