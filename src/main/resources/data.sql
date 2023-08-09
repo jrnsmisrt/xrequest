@@ -5,7 +5,7 @@ drop table if exists place cascade;
 create table place
 (
     id      SERIAL,
-    postal  VARCHAR(200)      not null,
+    postal  VARCHAR(200) not null,
     city    varchar(200) not null,
     state   varchar(200),
     country varchar(200) not null,
@@ -64,7 +64,10 @@ values ('a90efda9-e231-400b-a24f-0365712b2df0',
         '29-07-2023 08:45:10',
         'COUPLE4COUPLE',
         'test_title',
-        'test_content',
+        'Lorem ipsum dolor sit amet,
+ consectetur adipisicing elit. Architecto distinctio dolorem et
+ exercitationem, illo itaque laudantium magni natus nisi nostrum
+ numquam quae quaerat quas quis, saepe sequi vero voluptatibus! Repellat.',
         '"test/url", "test/url2"',
         '"sex, date", "love", "fuck"');
 
@@ -74,7 +77,10 @@ values ('a90efda9-e231-400b-a24f-0365712b2df1',
         '29-07-2021 08:45:10',
         'FEMALE4FEMALE',
         'test_title',
-        'test_content',
+        'Lorem ipsum dolor sit amet,
+consectetur adipisicing elit. Architecto distinctio dolorem et
+exercitationem, illo itaque laudantium magni natus nisi nostrum
+numquam quae quaerat quas quis, saepe sequi vero voluptatibus! Repellat.',
         '"test/url", "test/url2"',
         '"sex, date", "love", "fuck"');
 
@@ -84,7 +90,10 @@ values ('a90efda9-e231-400b-a24f-0365712b2df2',
         '29-07-2022 08:45:10',
         'MALE4COUPLE',
         'test_title',
-        'test_content',
+        'Lorem ipsum dolor sit amet,
+ consectetur adipisicing elit. Architecto distinctio dolorem et
+ exercitationem, illo itaque laudantium magni natus nisi nostrum
+ numquam quae quaerat quas quis, saepe sequi vero voluptatibus! Repellat.',
         '"test/url", "test/url2"',
         '"sex, date", "love", "fuck"');
 
@@ -94,6 +103,9 @@ values ('a90efda9-e231-400b-a24f-0365712b2df3',
         '29-07-2024 08:45:10',
         'BDSMFETISHKINK',
         'test_title',
-        'test_content',
+        'Lorem ipsum dolor sit amet,
+        consectetur adipisicing elit. Architecto distinctio dolorem et
+        exercitationem, illo itaque laudantium magni natus nisi nostrum
+        numquam quae quaerat quas quis, saepe sequi vero voluptatibus! Repellat.',
         '"test/url", "test/url2"',
         '"sex, date", "love", "fuck"');
