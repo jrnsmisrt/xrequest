@@ -37,7 +37,7 @@ create table xrequest
     category_request VARCHAR(36)  NOT NULL,
     title            VARCHAR(50)  NOT NULL,
     content_request  VARCHAR(500) NOT NULL,
-    photos_url       VARCHAR(100) ARRAY,
+    photos_url       VARCHAR(500) ARRAY,
     tags             VARCHAR(100) ARRAY,
     constraint xrequest_pk primary key (id),
     CONSTRAINT author_id_fk FOREIGN KEY (author_id) REFERENCES author (id)
@@ -45,8 +45,8 @@ create table xrequest
 
 insert into place(postal, city, state, country)
 select postal, city, state, country
-FROM CSVREAD('G:/_development/xrequest/data/place.csv');
--- FROM CSVREAD('C:/_development/personal/xrequest/data/place.csv');
+-- FROM CSVREAD('G:/_development/xrequest/data/place.csv');
+FROM CSVREAD('C:/_development/personal/xrequest/data/place.csv');
 
 insert into author(ID, FAMILY_NAME, NICKNAME, SURNAME, EMAIL, PHONENUMBER, AGE, PLACE)
 values ('64686c7c-de43-4667-8a13-eb192c0bd080',
@@ -61,27 +61,27 @@ values ('64686c7c-de43-4667-8a13-eb192c0bd080',
 insert into xrequest(id, AUTHOR_ID, DATETIME_REQUEST, category_request, TITLE, content_request, PHOTOS_URL, TAGS)
 values ('a90efda9-e231-400b-a24f-0365712b2df0',
         '64686c7c-de43-4667-8a13-eb192c0bd080',
-        '29-07-2023 08:45:10',
+        '29-07-2023 13:30:10',
         'COUPLE4COUPLE',
         'test_title',
         'Lorem ipsum dolor sit amet,
  consectetur adipisicing elit. Architecto distinctio dolorem et
  exercitationem, illo itaque laudantium magni natus nisi nostrum
  numquam quae quaerat quas quis, saepe sequi vero voluptatibus! Repellat.',
-        '"test/url", "test/url2"',
+        '"https://placehold.co/600x400?text=XRequest", "https://placehold.co/600x400?text=XRequest"',
         '"sex, date", "love", "fuck"');
 
 insert into xrequest(id, AUTHOR_ID, DATETIME_REQUEST, category_request, TITLE, content_request, PHOTOS_URL, TAGS)
 values ('a90efda9-e231-400b-a24f-0365712b2df1',
         '64686c7c-de43-4667-8a13-eb192c0bd080',
-        '29-07-2021 08:45:10',
+        '29-07-2021 20:45:10',
         'FEMALE4FEMALE',
         'test_title',
         'Lorem ipsum dolor sit amet,
 consectetur adipisicing elit. Architecto distinctio dolorem et
 exercitationem, illo itaque laudantium magni natus nisi nostrum
 numquam quae quaerat quas quis, saepe sequi vero voluptatibus! Repellat.',
-        '"test/url", "test/url2"',
+        '"https://placehold.co/600x400?text=XRequest", "https://placehold.co/600x400?text=XRequest"',
         '"sex, date", "love", "fuck"');
 
 insert into xrequest(id, AUTHOR_ID, DATETIME_REQUEST, category_request, TITLE, content_request, PHOTOS_URL, TAGS)
@@ -94,7 +94,7 @@ values ('a90efda9-e231-400b-a24f-0365712b2df2',
  consectetur adipisicing elit. Architecto distinctio dolorem et
  exercitationem, illo itaque laudantium magni natus nisi nostrum
  numquam quae quaerat quas quis, saepe sequi vero voluptatibus! Repellat.',
-        '"test/url", "test/url2"',
+        '"https://placehold.co/600x400?text=XRequest", "https://placehold.co/600x400?text=XRequest", "https://placehold.co/600x400?text=XRequest"',
         '"sex, date", "love", "fuck"');
 
 insert into xrequest(id, AUTHOR_ID, DATETIME_REQUEST, category_request, TITLE, content_request, PHOTOS_URL, TAGS)
@@ -107,5 +107,83 @@ values ('a90efda9-e231-400b-a24f-0365712b2df3',
         consectetur adipisicing elit. Architecto distinctio dolorem et
         exercitationem, illo itaque laudantium magni natus nisi nostrum
         numquam quae quaerat quas quis, saepe sequi vero voluptatibus! Repellat.',
-        '"test/url", "test/url2"',
+        '"https://placehold.co/600x400?text=XRequest", "https://placehold.co/600x400?text=XRequest"',
+        '"sex, date", "love", "fuck"');
+
+insert into xrequest(id, AUTHOR_ID, DATETIME_REQUEST, category_request, TITLE, content_request, PHOTOS_URL, TAGS)
+values ('a90efda9-e231-400b-a24f-0365712b2df4',
+        '64686c7c-de43-4667-8a13-eb192c0bd080',
+        '29-07-2024 08:45:10',
+        'BDSMFETISHKINK',
+        'test_title',
+        'Lorem ipsum dolor sit amet,
+        consectetur adipisicing elit. Architecto distinctio dolorem et
+        exercitationem, illo itaque laudantium magni natus nisi nostrum
+        numquam quae quaerat quas quis, saepe sequi vero voluptatibus! Repellat.',
+        '"https://placehold.co/600x400?text=XRequest", "https://placehold.co/600x400?text=XRequest"',
+        '"sex, date", "love", "fuck"');
+
+insert into xrequest(id, AUTHOR_ID, DATETIME_REQUEST, category_request, TITLE, content_request, PHOTOS_URL, TAGS)
+values ('a90efda9-e231-400b-a24f-0365712b2df5',
+        '64686c7c-de43-4667-8a13-eb192c0bd080',
+        '29-07-2024 08:45:10',
+        'BDSMFETISHKINK',
+        'test_title',
+        'Lorem ipsum dolor sit amet,
+        consectetur adipisicing elit. Architecto distinctio dolorem et
+        exercitationem, illo itaque laudantium magni natus nisi nostrum
+        numquam quae quaerat quas quis, saepe sequi vero voluptatibus! Repellat.',
+        '"https://placehold.co/600x400?text=XRequest", "https://placehold.co/600x400?text=XRequest"',
+        '"sex, date", "love", "fuck"');
+
+insert into xrequest(id, AUTHOR_ID, DATETIME_REQUEST, category_request, TITLE, content_request, PHOTOS_URL, TAGS)
+values ('a90efda9-e231-400b-a24f-0365712b2df6',
+        '64686c7c-de43-4667-8a13-eb192c0bd080',
+        '29-07-2024 08:45:10',
+        'BDSMFETISHKINK',
+        'test_title',
+        'Lorem ipsum dolor sit amet,
+        consectetur adipisicing elit. Architecto distinctio dolorem et
+        exercitationem, illo itaque laudantium magni natus nisi nostrum
+        numquam quae quaerat quas quis, saepe sequi vero voluptatibus! Repellat.',
+        '"https://placehold.co/600x400?text=XRequest", "https://placehold.co/600x400?text=XRequest"',
+        '"sex, date", "love", "fuck"');
+
+insert into xrequest(id, AUTHOR_ID, DATETIME_REQUEST, category_request, TITLE, content_request, PHOTOS_URL, TAGS)
+values ('a90efda9-e231-400b-a24f-0365712b2df7',
+        '64686c7c-de43-4667-8a13-eb192c0bd080',
+        '29-07-2024 08:45:10',
+        'BDSMFETISHKINK',
+        'test_title',
+        'Lorem ipsum dolor sit amet,
+        consectetur adipisicing elit. Architecto distinctio dolorem et
+        exercitationem, illo itaque laudantium magni natus nisi nostrum
+        numquam quae quaerat quas quis, saepe sequi vero voluptatibus! Repellat.',
+        '"https://placehold.co/600x400?text=XRequest", "https://placehold.co/600x400?text=XRequest"',
+        '"sex, date", "love", "fuck"');
+
+insert into xrequest(id, AUTHOR_ID, DATETIME_REQUEST, category_request, TITLE, content_request, PHOTOS_URL, TAGS)
+values ('a90efda9-e231-400b-a24f-0365712b2df8',
+        '64686c7c-de43-4667-8a13-eb192c0bd080',
+        '29-07-2024 08:45:10',
+        'BDSMFETISHKINK',
+        'test_title',
+        'Lorem ipsum dolor sit amet,
+        consectetur adipisicing elit. Architecto distinctio dolorem et
+        exercitationem, illo itaque laudantium magni natus nisi nostrum
+        numquam quae quaerat quas quis, saepe sequi vero voluptatibus! Repellat.',
+        '"https://placehold.co/600x400?text=XRequest", "https://placehold.co/600x400?text=XRequest"',
+        '"sex, date", "love", "fuck"');
+
+insert into xrequest(id, AUTHOR_ID, DATETIME_REQUEST, category_request, TITLE, content_request, PHOTOS_URL, TAGS)
+values ('a90efda9-e231-400b-a24f-0365712b2df9',
+        '64686c7c-de43-4667-8a13-eb192c0bd080',
+        '29-07-2024 08:45:10',
+        'BDSMFETISHKINK',
+        'test_title',
+        'Lorem ipsum dolor sit amet,
+        consectetur adipisicing elit. Architecto distinctio dolorem et
+        exercitationem, illo itaque laudantium magni natus nisi nostrum
+        numquam quae quaerat quas quis, saepe sequi vero voluptatibus! Repellat.',
+        '"https://placehold.co/600x400?text=XRequest", "https://placehold.co/600x400?text=XRequest"',
         '"sex, date", "love", "fuck"');
