@@ -45,8 +45,8 @@ create table xrequest
 
 insert into place(postal, city, state, country)
 select postal, city, state, country
--- FROM CSVREAD('G:/_development/xrequest/data/place.csv');
-FROM CSVREAD('C:/_development/personal/xrequest/data/place.csv');
+FROM CSVREAD('G:/_development/xrequest/data/place.csv');
+-- FROM CSVREAD('C:/_development/personal/xrequest/data/place.csv');
 
 insert into author(ID, FAMILY_NAME, NICKNAME, SURNAME, EMAIL, PHONENUMBER, AGE, PLACE)
 values ('64686c7c-de43-4667-8a13-eb192c0bd080',
