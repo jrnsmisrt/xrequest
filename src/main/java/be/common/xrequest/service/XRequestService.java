@@ -47,7 +47,6 @@ public class XRequestService {
 
     public XRequestDto createRequest(XRequestDto xRequestDto) {
         XRequest req = xRequestMapper.mapRequestDtoToRequest(xRequestDto);
-
         xRequestRepository.save(req);
 
         return xRequestMapper.mapRequestToRequestDto(req);

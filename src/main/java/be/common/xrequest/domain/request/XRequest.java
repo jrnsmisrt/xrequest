@@ -5,6 +5,8 @@ import be.common.xrequest.helper.CustomLocalDateTimeConverter;
 import be.common.xrequest.helper.StringListConverter;
 import jakarta.persistence.*;
 import org.springframework.data.convert.Jsr310Converters;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -88,6 +90,10 @@ public class XRequest {
         }
 
         public RequestBuilder withPhotos(List<String> photos) {
+            if (!validatePhotosLimit(photos)) {
+                throw new HttpClientErrorException(HttpStatus.FORBIDDEN, "Gelieve minimum 1 en maximum 2 foto's toe te voegen.");
+            }
+
             this.photos = photos;
             return this;
         }
@@ -155,10 +161,17 @@ public class XRequest {
     }
 
     public void addPhotos(List<String> photos) {
+        if (!validatePhotosLimit(photos)) {
+            throw new HttpClientErrorException(HttpStatus.FORBIDDEN, "Gelieve minimum 1 en maximum 2 foto's toe te voegen.");
+        }
         this.photos.addAll(photos);
     }
 
     public void addTags(List<String> tags) {
         this.tags.addAll(tags);
+    }
+
+    protected static boolean validatePhotosLimit(List<String> photos) {
+        return photos.size() <= 2 && photos.size() > 0;
     }
 }
